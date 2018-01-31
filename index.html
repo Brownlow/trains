@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Greeting App</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <title>Train Schedules</title>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
   <body class="mdc-typography">
     <main>
-  <h1 class="mdc-typography--display1">Tell us about yourself!</h1>
-
+  <h1 class="mdc-typography--display1">Train Schedule</h1>
+  
   <form action="#" id="greeting-form">
     <div>
       <div class="mdc-form-field">
@@ -46,16 +46,38 @@
     </div>
 
     <button type="submit" id="addTrain" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
-      Print Greeting
+      Add Train
     </button>
   </form>
+  <div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+        <tr>
+          <th>Train Name</th>
+          <th>Destination</th>
+          <th>First Train</th>
+          <th>Next Train</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row">
+         <!--  <td id="name-display" data-title="ID"></td>
+          <td id="destination-display" data-title="Name"></td>
+          <td id="first-display" data-title="Link"></td>
+          <td id="next-display" data-title="Status"></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <!-- The p element below is where we'll eventually output our greeting -->
   <p class="mdc-typography--headline" id="greeting"></p>
 </main>
-
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 <script>window.mdc.autoInit();</script>
+<script src="assets/js/app.js"></script>
 
   </body>
 </html>
