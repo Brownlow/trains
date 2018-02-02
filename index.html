@@ -1,83 +1,93 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Train Schedules</title>
-    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
-    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  </head>
-  <body class="mdc-typography">
-    <main>
-  <h1 class="mdc-typography--display1">Train Schedule</h1>
-  
-  <form action="#" id="greeting-form">
-    <div>
-      <div class="mdc-form-field">
-        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-          <input id="trainName" type="text" class="mdc-text-field__input">
-          <label for="trainName" class="mdc-text-field__label">Train Name</label>
-          <div class="mdc-text-field__bottom-line"></div>
-        </div>
-      </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <div class="mdc-form-field">
-        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-          <input id="destination" type="text" class="mdc-text-field__input">
-          <label for="destination" class="mdc-text-field__label">Destination</label>
-          <div class="mdc-text-field__bottom-line"></div>
-        </div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+    <title>Trains n' Shit</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">Train Schedule</h1>
+        <p>Train Time is Fun Time. Do it.
       </div>
-      <div class="mdc-form-field">
-        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-          <input id="firstTrain" type="text" class="mdc-text-field__input">
-          <label for="firstTrain" class="mdc-text-field__label">First Train Time</label>
-          <div class="mdc-text-field__bottom-line"></div>
+    </div>
+    <div class="container">
+      <div class="card mb-5">
+        <div class="card-header">Find Your Train 
+          <button type="button" style="float:right"; class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New Train</button>
         </div>
-      </div>
-      <div class="mdc-form-field">
-        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
-          <input id="frequency" type="text" class="mdc-text-field__input">
-          <label for="frequency" class="mdc-text-field__label">Frequency</label>
-          <div class="mdc-text-field__bottom-line"></div>
+          <div class="card-body">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Train Name</th>
+                  <th>Destination</th>
+                  <th>Frequency (min)</th>
+                  <th>Next Arrival</th>
+                  <th>Minutes Away</th>
+                </tr>
+              </thead>
+                <tbody> <!-- /////////////////// Content Goes Here  ////////////////////////  -->
+                </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Train</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="submitForm">
+              <div class="form-group">
+                <label>Train Name</label>
+                <input type="text" class="form-control" id="trainName" placeholder="Enter name">
+              </div>
+              <div class="form-group">
+                <label>Destination</label>
+                <input type="text" class="form-control" id="destination" placeholder="Where is it going?">
+              </div>
+              <div class="form-group">
+                <label>First Train Time</label>
+                <input type="text" class="form-control" id="firstTrain" placeholder="Start Time">
+              </div>
+              <div class="form-group">
+                <label>Frequency</label>
+                <input type="text" class="form-control" id="frequency" placeholder="Frequency">
+              </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button id="addTrain" type="button" class="btn btn-primary" data-dismiss="modal">Add Train</button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
         </div>
       </div>
     </div>
 
-    <button type="submit" id="addTrain" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
-      Add Train
-    </button>
-  </form>
-  <div class="table-responsive-vertical shadow-z-1">
-  <!-- Table starts here -->
-  <table id="table" class="table table-hover table-mc-light-blue">
-      <thead>
-        <tr>
-          <th>Train Name</th>
-          <th>Destination</th>
-          <th>First Train</th>
-          <th>Next Train</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr id="row">
-         <!--  <td id="name-display" data-title="ID"></td>
-          <td id="destination-display" data-title="Name"></td>
-          <td id="first-display" data-title="Link"></td>
-          <td id="next-display" data-title="Status"></td> -->
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- The p element below is where we'll eventually output our greeting -->
-  <p class="mdc-typography--headline" id="greeting"></p>
-</main>
-<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-<script>window.mdc.autoInit();</script>
-<script src="assets/js/app.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+  <script src="assets/js/app.js"></script>
 
   </body>
 </html>

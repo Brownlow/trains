@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Train Schedules</title>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- Link to Moment.js should go here -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  </head>
+  <body class="mdc-typography">
+    <main>
+  <h1 class="mdc-typography--display1">Train Schedule</h1>
+  
+  <form action="#" id="greeting-form">
+    <div>
+      <div class="mdc-form-field">
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+          <input id="trainName" type="text" class="mdc-text-field__input">
+          <label for="trainName" class="mdc-text-field__label">Train Name</label>
+          <div class="mdc-text-field__bottom-line"></div>
+        </div>
+      </div>
+
+      <div class="mdc-form-field">
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+          <input id="destination" type="text" class="mdc-text-field__input">
+          <label for="destination" class="mdc-text-field__label">Destination</label>
+          <div class="mdc-text-field__bottom-line"></div>
+        </div>
+      </div>
+      <div class="mdc-form-field">
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+          <input id="firstTrain" type="text" class="mdc-text-field__input">
+          <label for="firstTrain" class="mdc-text-field__label">First Train Time</label>
+          <div class="mdc-text-field__bottom-line"></div>
+        </div>
+      </div>
+      <div class="mdc-form-field">
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+          <input id="frequency" type="text" class="mdc-text-field__input">
+          <label for="frequency" class="mdc-text-field__label">Frequency</label>
+          <div class="mdc-text-field__bottom-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" id="addTrain" class="mdc-button mdc-button--raised mdc-ripple-surface" data-mdc-auto-init="MDCRipple">
+      Add Train
+    </button>
+  </form>
+  <div class="table-responsive-vertical shadow-z-1">
+  <!-- Table starts here -->
+  <table id="table" class="table table-hover table-mc-light-blue">
+      <thead>
+        <tr>
+          <th>Train Name</th>
+          <th>Destination</th>
+          <th>Frequency (min)</th>
+          <th>Next Arrival</th>
+          <th>Minutes Away</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- The p element below is where we'll eventually output our greeting -->
+  <p class="mdc-typography--headline" id="greeting"></p>
+</main>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script>window.mdc.autoInit();</script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/moment-min.js"></script>
+
+  </body>
+</html>
